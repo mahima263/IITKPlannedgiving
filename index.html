@@ -28,45 +28,163 @@
 <body>
 
   <!-- Navbar -->
-  <!-- Main Navbar -->
-  <!-- Unified Navbar -->
+
   <nav class="navbar navbar-expand-lg navbar-light bg-white px-3 py-2 border-bottom fixed-top">
     <div class="container-fluid">
-
-      <!-- Logo Left -->
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="Assets/images/IITKLogo.png" alt="IITK Logo" style="height: 50px; margin-right: 10px;" />
-        <span style="font-size: 28px; font-weight: regular; color: #000000;">|</span>
-        <span
-          style="font-family: 'Raleway', sans-serif; font-size: 28px; font-weight: 500; color: #000000; margin-left: 10px;">
-          Planned Giving
-        </span>
+  
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center brand-wrap" href="#">
+        <img src="Assets/images/IITKLogo.png" alt="IITK Logo" class="brand-logo" />
+        <span class="brand-sep">|</span>
+        <span class="brand-text">Planned Giving</span>
       </a>
-
-      <!-- Toggler -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Nav + Button Right -->
+      
+      
+      <!-- Mobile Right Side (Talk + Hamburger in one row) -->
+      <div class="d-flex align-items-center d-lg-none ms-auto">
+        <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });"
+          class="btn me-2"
+          style="font-family: 'Roboto', sans-serif; background-color: #B04B34; color: #fff; border: none; padding: 6px 12px;">
+          Talk to Us
+        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+  
+      <!-- Collapsible Menu -->
       <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about"> About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="#matter"> Why It Matters</a></li>
-          <li class="nav-item"><a class="nav-link" href="#ways"> Ways to Give</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#matter">Why It Matters</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ways">Ways to Give</a></li>
         </ul>
+  
+        <!-- Desktop Only Button -->
         <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });"
-        class="btn ms-lg-3 mt-2 mt-lg-0"
-        style="font-family: 'Roboto', sans-serif; background-color: #B04B34; color: #fff; border: none;">
-        Talk to Us
-      </button>
-      
+          class="btn ms-lg-3 d-none d-lg-inline-block"
+          style="font-family: 'Roboto', sans-serif; background-color: #B04B34; color: #fff; border: none; padding: 6px 16px;">
+          Talk to Us
+        </button>
       </div>
+  
     </div>
   </nav>
+  
+  
+  <style>
+  /* Ensure header row never wraps */
+  .no-wrap {
+    flex-wrap: nowrap !important;
+  }
+  
+  /* Logo */
+  .brand-logo {
+    height: 56px;
+    width: auto;
+    display: block;
+    flex: 0 0 auto;
+  }
+  
+  /* Separator and text */
+  .brand-sep {
+    font-size: 24px;
+    color: #000;
+    margin: 0 6px;
+    flex: 0 0 auto;
+  }
+  .brand-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #000;
+    white-space: nowrap;
+    flex: 0 1 auto;   /* shrink if needed */
+    min-width: 0;     /* allow shrink properly */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Talk button in header (always visible) */
+  .header-talk-btn {
+    font-family: 'Roboto', sans-serif;
+    background-color: #B04B34;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  
+  /* Make sure toggler doesn't wrap or move */
+  .navbar-toggler {
+    flex: 0 0 auto;
+    margin-left: 0.25rem;
+  }
+  
+  /* ===================== Responsive tweaks ===================== */
+  
+  /* Tablet & mobile */
+  @media (max-width: 767px) {
+  .brand-wrap {
+    display: flex;
+    flex-direction: column; /* line break */
+    align-items: flex-start;
+    line-height: 1.2;
+  }
 
+  .brand-sep {
+    display: none; /* | chhota screen pe hatado */
+  }
+
+  .brand-text {
+    font-size: 16px;
+    white-space: normal; /* wrap allow */
+  }
+}
+
+  
+  /* Very small phones (<=360px): hide brand text, keep only logo */
+  @media (max-width: 360px) {
+    .brand-text, .brand-sep { display: none; }
+    .brand-logo { height: 36px; }
+    .header-talk-btn { padding: 5px 8px; font-size: 13px; }
+  }
+  
+  /* Prevent navbar from wrapping on tiny screens */
+  .navbar.fixed-top {
+    overflow-x: auto;
+  }
+ /* Mobile view */
+ @media (max-width: 480px) {
+  .navbar-brand {
+    display: flex;
+    flex-direction: column; /* logo above, text below */
+    align-items: center;
+    text-align: center;
+  }
+
+  .navbar-brand img {
+    margin-bottom: 4px; /* logo ke niche gap */
+  }
+
+  .brand-text {
+    display: block !important;   /* ensure visible */
+    white-space: normal !important; /* allow wrapping */
+    overflow: visible !important;   /* prevent hiding */
+    text-overflow: unset !important;
+    font-size: 16px;
+  }
+
+  .brand-sep { display: none; }
+}
+
+
+
+
+</style>
   <!-- Banner Section -->
   <section id="home" class="position-relative">
     <img src="Assets/images/WhatsApp Image 2025-07-11 at 16.21.44.jpeg" class="img-fluid w-100 h-100" alt="Banner Image">
@@ -74,40 +192,8 @@
   
 
 
-  <!-- <div class="registration-form" id="registrationForm">
-        <button class="close-btn" id="closeFormBtn">&times;</button>
-        <h4 class="mb-4">Reunion Open 2025</h4>
-        <form>
-            <input type="text" class="form-control" placeholder="Name" required />
-            <input type="email" class="form-control" placeholder="Email" required />
-            <input type="tel" class="form-control" placeholder="Mobile No." required />
-            <select class="form-select" required>
-                <option value="">State*</option>
-                <option>Uttar Pradesh</option>
-                <option>Maharashtra</option>
-                <option>Delhi</option>
-            </select>
-            <select class="form-select" required>
-                <option value="">Select Programme</option>
-                <option>B.Tech</option>
-                <option>BBA</option>
-                <option>MBA</option>
-            </select>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="consent" required />
-                <label class="form-check-label" for="consent">
-                    I authorise IITK to contact me via Email, SMS, and Call.
-                </label>
-            </div>
-            <button type="submit" class="btn btn-light text-danger w-100">Submit</button>
-        </form>
-    </div> -->
-
-
-
-  <!-- About us -->
-
-  <section id="about" class="planned-giving-legacy py-5 bg-light" style="font-family: 'Roboto', sans-serif;">
+  
+  <section id="about" class="planned-giving-legacy py-4 bg-light" style="font-family: 'Roboto', sans-serif;">
 
     <div class="container">
       <div class="row align-items-center mb-5">
@@ -441,7 +527,7 @@
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000"
           data-aos-easing="ease-in-out" data-aos-offset="200">
           <div class="giving-card">
-            <img src="Assets/images/Bequest or Devise.jpg" alt="Bequest" class="card-image">
+            <img src="Assets/images/Bequest or Devise (1).jpg" alt="Bequest" class="card-image">
             <div class="card-overlay">
               <p>A gift through a will or trust lets you support without affecting current finances.</p>
               <div class="benefits-box">
@@ -565,6 +651,59 @@
     </div>
   </div>
 </section>
+<section id="contact" class="iitk-contact-section py-5" style="background-color: #fff; font-family: 'Roboto', sans-serif;">
+  <div class="container">
+    
+    <!-- Heading -->
+    <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-offset="200">
+      <h2 class="fw-bold" style="font-family: 'Raleway', sans-serif; color: #B04B34;">Talk to Us</h2>
+      <h4 class="mt-2" style="font-weight: 400;">
+        Planned Giving lets <span style="color: #B04B34;">your journey</span> come full circle.
+      </h4>
+    </div>
+
+    <!-- Contact Row -->
+    <div class="row g-4 align-items-stretch mt-4">
+        <!-- Embedded Form -->
+        <div class="col-md-7" data-aos="fade-left" data-aos-delay="300" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-offset="200">
+          <div class="iitk-contact-iframe-wrapper rounded-4 shadow-sm overflow-hidden" style="border: 1px solid #eee;">
+            <iframe aria-label="Contact Form" frameborder="0"
+                    style="height: 600px; width: 100%; border: none;"
+                    src="https://forms.zohopublic.in/iitkanpurdf1/form/PlannedGivingCampaign/formperma/fUMiDaI8Dd20PCmFiKAJZSoGbvn4l-68t_UnO11Aj4w">
+            </iframe>
+          </div>
+        </div>
+      <!-- Contact Info Card -->
+      <div class="col-md-5" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-offset="200">
+        <div class="iitk-contact-box p-4 rounded-4 shadow-sm h-100" style="background-color: #fdfdfd; border-left: 4px solid #B04B34;">
+          
+          <h5 class="mb-3" style="font-family: 'Raleway', sans-serif; font-weight: 600; color: #B04B34;">
+            Office of Planned Giving
+          </h5>
+
+          <p class="mb-2" style="font-size: 0.95rem; color: #333;">Indian Institute of Technology Kanpur</p>
+
+          <div class="mb-3">
+            <p class="mb-0" style="font-weight: 600;">Mr. Rajat Sharma</p>
+            <p class="text-muted" style="font-size: 0.95rem;">Vice President-Development <br/>IIT Kanpur Development Foundation</p>
+          </div>
+
+          <div class="mb-2">
+            <p class="mb-1" style="font-weight: 500;">Email:</p>
+            <a href="mailto:rajatsharma@iitkdf.org" style="color: #B04B34; text-decoration: none;">rajatsharma@iitkdf.org</a>
+          </div>
+
+          
+          <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+            We’d love to hear from you — whether it’s a question, a collaboration idea, or you're ready to make a difference through giving, we’re here to support your journey.
+          </p>
+        </div>
+      </div>
+
+    
+    </div>
+  </div>
+</section>
 
 
   <section class="planned-giving-faq py-5" style="background-color: #f9f9f9; font-family: 'Roboto', sans-serif;">
@@ -622,7 +761,7 @@
               </h2>
               <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqLeft">
                 <div class="accordion-body">
-                  Unrestricted Publicly Traded Securities, Life Insurance, Qualified Retirement Assets, Bequest or Devise, Charitable Trusts and Donor Advised Funds and Private Foundation are accepted.
+                  Unrestricted Publicly Traded Securities, Life Insurance, Qualified Retirement Assets, Bequest, Charitable Trusts and Donor Advised Funds and Private Foundation are accepted.
                 </div>
               </div>
             </div>
@@ -686,64 +825,7 @@
 
 
 
-  <section id="contact" class="iitk-contact-section py-5" style="background-color: #fff; font-family: 'Roboto', sans-serif;">
-    <div class="container">
-      
-      <!-- Heading -->
-      <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-offset="200">
-        <h2 class="fw-bold" style="font-family: 'Raleway', sans-serif; color: #B04B34;">Talk to Us</h2>
-        <h4 class="mt-2" style="font-weight: 400;">
-          Planned Giving lets <span style="color: #B04B34;">your journey</span> come full circle.
-        </h4>
-      </div>
-  
-      <!-- Contact Row -->
-      <div class="row g-4 align-items-stretch mt-4">
-        
-        <!-- Contact Info Card -->
-        <div class="col-md-5" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-offset="200">
-          <div class="iitk-contact-box p-4 rounded-4 shadow-sm h-100" style="background-color: #fdfdfd; border-left: 4px solid #B04B34;">
-            
-            <h5 class="mb-3" style="font-family: 'Raleway', sans-serif; font-weight: 600; color: #B04B34;">
-              Office of Planned Giving
-            </h5>
-  
-            <p class="mb-2" style="font-size: 0.95rem; color: #333;">Indian Institute of Technology Kanpur</p>
-  
-            <div class="mb-3">
-              <p class="mb-0" style="font-weight: 600;">Mr. Rajat Sharma</p>
-              <p class="text-muted" style="font-size: 0.95rem;">Vice President-Development <br/>IIT Kanpur Development Foundation</p>
-            </div>
-  
-            <div class="mb-2">
-              <p class="mb-1" style="font-weight: 500;">Email:</p>
-              <a href="mailto:rajatsharma@iitkdf.org" style="color: #B04B34; text-decoration: none;">rajatsharma@iitkdf.org</a>
-            </div>
-  
-            <div class="mb-3">
-              <p class="mb-1" style="font-weight: 500;">Phone:</p>
-              <a href="tel:+919810898246" style="color: #B04B34; text-decoration: none;">+91 98108 98246</a>
-            </div>
-  
-            <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6;">
-              We’d love to hear from you — whether it’s a question, a collaboration idea, or you're ready to make a difference through giving, we’re here to support your journey.
-            </p>
-          </div>
-        </div>
-  
-        <!-- Embedded Form -->
-        <div class="col-md-7" data-aos="fade-left" data-aos-delay="300" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-offset="200">
-          <div class="iitk-contact-iframe-wrapper rounded-4 shadow-sm overflow-hidden" style="border: 1px solid #eee;">
-            <iframe aria-label="Contact Form" frameborder="0"
-                    style="height: 600px; width: 100%; border: none;"
-                    src="https://forms.zohopublic.in/iitkanpurdf1/form/PlannedGivingCampaign/formperma/fUMiDaI8Dd20PCmFiKAJZSoGbvn4l-68t_UnO11Aj4w">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
+
 
   <footer class="custom-footer py-5">
     <div class="container">
@@ -759,7 +841,7 @@
           <br>
           <p class="mb-1">For any queries please contact us at</p>
           <p class="mb-1">
-            <a href="mailto:alumni@iitk.ac.in" class="footer-link">alumni@iitk.ac.in</a>
+            <a href="mailto:dean@dora.iitk.ac.in." class="footer-link">dean@dora.iitk.ac.in.</a>
           </p>
           <p>Phone No. +91-512-259-7289</p>
         </div>
