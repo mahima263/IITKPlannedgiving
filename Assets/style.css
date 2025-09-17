@@ -322,7 +322,6 @@ html, body {
 
   .iitk-contact-box {
     background: rgba(241, 240, 240, 0.85);
-    border-left: 5px solid #7e0e0e;
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
